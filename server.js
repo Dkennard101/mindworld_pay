@@ -62,6 +62,7 @@ app.get("/", (req, res) => {
 // --------------------------------------------------------------
 app.post("/api/paynow/create", async (req, res) => {
   try {
+    console.log('Received body:', req.body);
     const { currency, amount, description, email } = req.body;
 
     const normalizedCurrency = String(currency || "").toUpperCase();
