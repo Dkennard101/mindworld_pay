@@ -103,7 +103,7 @@ app.post("/api/paynow/create", async (req, res) => {
     paynow.returnUrl = returnUrl;
     paynow.resultUrl = resultUrl;
 
-    const payment = paynow.createPayment(reference, email || "");
+    const payment = paynow.createPayment(reference, "zikodivine00@gmail.com");
     payment.add(description || "MindWorld Subscription", numericAmount);
 
     console.log('Sending payment to Paynow...');
