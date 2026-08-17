@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const crypto = require("crypto");
-const Paynow = require("paynow");
+// ✅ Correct – imports the Paynow constructor
+const { Paynow } = require('paynow');
 console.log('Paynow type:', typeof Paynow);
 console.log('Paynow value:', Paynow);
 
