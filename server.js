@@ -116,9 +116,10 @@ app.post("/api/paynow/create", async (req, res) => {
 
   } catch (error) {
     console.error("Paynow create error:", error);
+    console.error("Error stack:", error.stack);
     return res.status(500).json({
       success: false,
-      error: "Unable to create Paynow payment"
+      error: error.message || "Unable to create Paynow payment"
     });
   }
 });
