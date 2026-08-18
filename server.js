@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
 });
 
 // --------------------------------------------------------------
-// PAYNOW RETURN PAGE (after payment)
+// PAYNOW RETURN PAGE (after payment) – with Deep Link & Auto‑redirect
 // --------------------------------------------------------------
 app.get("/paynow-return", (req, res) => {
   res.send(`
@@ -94,7 +94,30 @@ app.get("/paynow-return", (req, res) => {
           }
           h1 { color: #2e7d32; }
           p { color: #555; font-size: 16px; }
-          .note { font-size: 13px; color: #999; margin-top: 20px; }
+          .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: #1a73e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+          }
+          .btn:hover { background: #1557b0; }
+          .note {
+            font-size: 13px;
+            color: #999;
+            margin-top: 20px;
+          }
+          .auto-msg {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+          }
         </style>
       </head>
       <body>
@@ -102,9 +125,21 @@ app.get("/paynow-return", (req, res) => {
           <div class="icon">✅</div>
           <h1>Payment Processed</h1>
           <p>Your payment has been processed successfully.</p>
-          <p>You can now close this page and return to the MindWorld app.</p>
-          <p class="note">You will be redirected automatically if the app is installed.</p>
+          <p>You can now return to the MindWorld app.</p>
+
+          <!-- Deep‑link button -->
+          <a href="mindworld://payment/success" class="btn">📱 Open MindWorld App</a>
+
+          <p class="auto-msg">You will be redirected automatically in 3 seconds…</p>
+          <p class="note">If the app does not open, tap the button above or open the app manually.</p>
         </div>
+
+        <script>
+          // Auto‑redirect after 3 seconds to the deep link
+          setTimeout(function() {
+            window.location.href = "mindworld://payment/success";
+          }, 3000);
+        </script>
       </body>
     </html>
   `);
