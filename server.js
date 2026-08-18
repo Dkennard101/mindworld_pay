@@ -216,7 +216,7 @@ app.post("/api/paynow/status", async (req, res) => {
     }
 
     const paynow = getPaynow(normalizedCurrency);
-    const status = await paynow.poll(pollUrl);
+    const status = await paynow.pollTransaction(pollUrl);
 
     return res.json({
       success: true,
