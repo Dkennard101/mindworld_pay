@@ -63,6 +63,54 @@ app.get("/", (req, res) => {
 });
 
 // --------------------------------------------------------------
+// PAYNOW RETURN PAGE (after payment)
+// --------------------------------------------------------------
+app.get("/paynow-return", (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Payment Complete - MindWorld</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 60px;
+            background: #f5f5f5;
+          }
+          .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          }
+          .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+          }
+          h1 { color: #2e7d32; }
+          p { color: #555; font-size: 16px; }
+          .note { font-size: 13px; color: #999; margin-top: 20px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="icon">✅</div>
+          <h1>Payment Processed</h1>
+          <p>Your payment has been processed successfully.</p>
+          <p>You can now close this page and return to the MindWorld app.</p>
+          <p class="note">You will be redirected automatically if the app is installed.</p>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
+// --------------------------------------------------------------
 // CREATE PAYNOW PAYMENT
 // --------------------------------------------------------------
 app.post("/api/paynow/create", async (req, res) => {
